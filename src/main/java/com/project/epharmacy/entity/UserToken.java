@@ -8,23 +8,23 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
-
 import java.util.Date;
-
 @Entity
-@Table(name = "department")
+@Table(name = "user_token")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @DynamicInsert
 @Data
-public class Department {
+public class UserToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String location;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    private String token;
     @CreationTimestamp
     private Date dataDate;
     @ColumnDefault("1")

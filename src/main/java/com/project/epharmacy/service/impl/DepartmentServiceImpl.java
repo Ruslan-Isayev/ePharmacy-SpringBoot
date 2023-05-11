@@ -1,5 +1,6 @@
 package com.project.epharmacy.service.impl;
 
+import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.response.RespDepartment;
 import com.project.epharmacy.dto.response.RespStatus;
 import com.project.epharmacy.dto.response.Response;
@@ -32,6 +33,42 @@ public class DepartmentServiceImpl implements DepartmentService {
             List<RespDepartment> respDepartmentList = departmentList.stream().map(department -> mapping(department)).collect(Collectors.toList());
             response.setT(respDepartmentList);
             response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response<RespDepartment> getDepartmentById(Long departmentId) {
+        Response<RespDepartment> response = new Response<>();
+        try {
+            if (departmentId == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Department department = departmentRepository.getDepartmentByIdAndActive(departmentId, EnumAvavilableStatus.ACTIVE.value);
+            RespDepartment respDepartment = mapping(department);
+            response.setT(respDepartment);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response<RespDepartment> addDepartment(ReqDepartment reqDepartment) {
+        Response response = new Response<>();
+        try {
+
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
             ex.printStackTrace();

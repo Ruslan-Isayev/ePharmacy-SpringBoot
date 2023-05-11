@@ -1,12 +1,11 @@
 package com.project.epharmacy.controller;
 
+import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.response.RespDepartment;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +19,14 @@ public class DepartmentController {
     @GetMapping("/getDepartmentList")
     public Response<List<RespDepartment>> getDepartmentList() {
         return departmentService.getDepartmentList();
+    }
+    @GetMapping("/getDepartmentById/{departmentId}")
+    public Response<RespDepartment> getDepartmentById(@PathVariable Long departmentId) {
+        return departmentService.getDepartmentById(departmentId);
+    }
+
+    @PostMapping("/addDepartment")
+    public Response<RespDepartment> addDepartment(@RequestBody ReqDepartment reqDepartment) {
+        return departmentService.addDepartment(reqDepartment);
     }
 }

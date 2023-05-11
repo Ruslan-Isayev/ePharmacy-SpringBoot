@@ -1,5 +1,6 @@
 package com.project.epharmacy.service.impl;
 
+import com.project.epharmacy.dto.request.ReqCustomer;
 import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.RespStatus;
 import com.project.epharmacy.dto.response.Response;
@@ -11,6 +12,7 @@ import com.project.epharmacy.repository.CustomerRepository;
 import com.project.epharmacy.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,86 @@ public class CustomerServiceImpl implements CustomerService {
             }
             List<RespCustomer> respCustomerList = customerList.stream().map(customer -> mapping(customer)).collect(Collectors.toList());
             response.setT(respCustomerList);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response<RespCustomer> getCustomerById(Long customerId) {
+        Response response = new Response<>();
+        try {
+            if (customerId == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Customer customer = customerRepository.findCustomerByIdAndActive(customerId, EnumAvavilableStatus.ACTIVE.value);
+            if (customer == null) {
+                throw new MyException(ExceptionConstants.CUSTOMER_NOT_FOUND, "Customer not found");
+            }
+            RespCustomer respCustomer = mapping(customer);
+            response.setT(respCustomer);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response addCustomer(ReqCustomer reqCustomer) {
+        Response response = new Response();
+        try {
+            String name = reqCustomer.getName();
+            String surname = reqCustomer.getSurname();
+            if (name == null || surname == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Customer customer = Customer.builder()
+                    .name(name)
+                    .surname(surname)
+                    .phone(reqCustomer.getPhone())
+                    .dob(reqCustomer.getDob())
+                    .cif(reqCustomer.getCif())
+                    .build();
+            customerRepository.save(customer);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response updateCustomer(ReqCustomer reqCustomer) {
+        Response response = new Response<>();
+        try {
+            String name = reqCustomer.getName();
+            String surname = reqCustomer.getSurname();
+            Long id = reqCustomer.getId();
+            if (name == null || surname == null || id == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Customer customer = new Customer();
+            customer.setName(name);
+            customer.setSurname(surname);
+            customer.setDob(reqCustomer.getDob());
+            customer.setCif(reqCustomer.getCif());
+            customer.setPhone(reqCustomer.getPhone());
+            customerRepository.save(customer);
             response.setStatus(RespStatus.getSuccessMessage());
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));

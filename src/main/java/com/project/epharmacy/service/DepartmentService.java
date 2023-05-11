@@ -1,5 +1,6 @@
 package com.project.epharmacy.service;
 
+import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.response.RespDepartment;
 import com.project.epharmacy.dto.response.Response;
 import org.springframework.stereotype.Service;
@@ -9,4 +10,8 @@ import java.util.List;
 public interface DepartmentService {
 
     Response<List<RespDepartment>> getDepartmentList();
+
+    Response<RespDepartment> getDepartmentById(Long departmentId);
+
+    Response<RespDepartment> addDepartment(ReqDepartment reqDepartment);
 }

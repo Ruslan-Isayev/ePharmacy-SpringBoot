@@ -123,6 +123,31 @@ public class CustomerServiceImpl implements CustomerService {
         return response;
     }
 
+    @Override
+    public Response deleteCustomer(Long customerId) {
+        Response response = new Response();
+        try {
+            Long id = customerId;
+            if (id == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Customer customer = customerRepository.findCustomerByIdAndActive(id, EnumAvavilableStatus.ACTIVE.value);
+            if (customer == null) {
+                throw new MyException(ExceptionConstants.CUSTOMER_NOT_FOUND, "Customer not found");
+            }
+            customer.setActive(EnumAvavilableStatus.DEACTIVE.value);
+            customerRepository.save(customer);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
     private RespCustomer mapping(Customer customer) {
         RespCustomer respCustomer = RespCustomer.builder()
                 .id(customer.getId())

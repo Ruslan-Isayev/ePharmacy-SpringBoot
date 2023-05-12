@@ -13,5 +13,7 @@ public interface DepartmentService {
 
     Response<RespDepartment> getDepartmentById(Long departmentId);
 
-    Response<RespDepartment> addDepartment(ReqDepartment reqDepartment);
+    Response addDepartment(ReqDepartment reqDepartment);
+
+    Response updateDepartment(ReqDepartment reqDepartment);
 }

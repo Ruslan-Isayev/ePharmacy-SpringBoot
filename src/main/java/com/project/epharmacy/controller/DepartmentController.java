@@ -20,13 +20,19 @@ public class DepartmentController {
     public Response<List<RespDepartment>> getDepartmentList() {
         return departmentService.getDepartmentList();
     }
+
     @GetMapping("/getDepartmentById/{departmentId}")
     public Response<RespDepartment> getDepartmentById(@PathVariable Long departmentId) {
         return departmentService.getDepartmentById(departmentId);
     }
 
     @PostMapping("/addDepartment")
-    public Response<RespDepartment> addDepartment(@RequestBody ReqDepartment reqDepartment) {
+    public Response addDepartment(@RequestBody ReqDepartment reqDepartment) {
         return departmentService.addDepartment(reqDepartment);
+    }
+
+    @PutMapping("/updateDepartment")
+    public Response updateDepartment(@RequestBody ReqDepartment reqDepartment) {
+        return departmentService.updateDepartment(reqDepartment);
     }
 }

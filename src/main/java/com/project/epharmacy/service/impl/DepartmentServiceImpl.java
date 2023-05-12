@@ -65,10 +65,20 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Response<RespDepartment> addDepartment(ReqDepartment reqDepartment) {
+    public Response addDepartment(ReqDepartment reqDepartment) {
         Response response = new Response<>();
         try {
-
+            String name = reqDepartment.getName();
+            String location = reqDepartment.getLocation();
+            if (name == null || location == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Department department = Department.builder()
+                    .name(name)
+                    .location(location)
+                    .build();
+            departmentRepository.save(department);
+            response.setStatus(RespStatus.getSuccessMessage());
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
             ex.printStackTrace();
@@ -79,7 +89,31 @@ public class DepartmentServiceImpl implements DepartmentService {
         return response;
     }
 
-    private RespDepartment mapping(Department department){
+    @Override
+    public Response updateDepartment(ReqDepartment reqDepartment) {
+        Response response = new Response<>();
+        try {
+            Long id = reqDepartment.getId();
+            String name = reqDepartment.getName();
+            if (id == null || name == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Department department = new Department();
+            department.setName(name);
+            department.setLocation(reqDepartment.getLocation());
+            departmentRepository.save(department);
+            response.setStatus(RespStatus.getSuccessMessage());
+        }catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    private RespDepartment mapping(Department department) {
         RespDepartment respDepartment = RespDepartment.builder()
                 .id(department.getId())
                 .name(department.getName())

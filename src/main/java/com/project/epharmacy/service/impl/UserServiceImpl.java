@@ -14,6 +14,7 @@ import com.project.epharmacy.exception.MyException;
 import com.project.epharmacy.repository.UserRepository;
 import com.project.epharmacy.repository.UserTokenRepository;
 import com.project.epharmacy.service.UserService;
+import com.project.epharmacy.util.Utility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,10 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
     private final UserTokenRepository userTokenRepository;
+
+    private final Utility utility;
 
     @Override
     public Response<RespUser> login(ReqLogin reqLogin) {
@@ -63,6 +67,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response logout(ReqToken reqToken) {
-        return null;
+        Response response = new Response<>();
+        try {
+            UserToken userToken = utility.checkToken(reqToken);
+            userToken.setActive(EnumAvavilableStatus.DEACTIVE.value);
+            userTokenRepository.save(userToken);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
     }
 }

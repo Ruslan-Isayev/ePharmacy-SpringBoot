@@ -13,24 +13,26 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "department")
+@Table(name = "medication")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@DynamicInsert
 @Data
-public class Department {
+@DynamicInsert
+@Builder
+public class Medication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String location;
-    @ManyToMany
-    @JoinTable(name = "department_medication",
-            joinColumns = @JoinColumn(name = "department_id"),
-            inverseJoinColumns = @JoinColumn(name = "medication_id"))
-    private List<Medication> medication;
+    private Double price;
+    private Date productionDate;
+    private Date expirationDate;
+    @ManyToMany(mappedBy = "medication")
+    private List<Department> department;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id")
+    private Manufacturer manufacturer;
     @CreationTimestamp
     private Date dataDate;
     @ColumnDefault("1")

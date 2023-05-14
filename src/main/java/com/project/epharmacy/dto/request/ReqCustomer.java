@@ -1,5 +1,6 @@
 package com.project.epharmacy.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,4 +16,6 @@ public class ReqCustomer {
     private String cif;
     private Long phone;
     private Date dob;
+    @JsonProperty(value = "token")
+    private ReqToken reqToken;
 }

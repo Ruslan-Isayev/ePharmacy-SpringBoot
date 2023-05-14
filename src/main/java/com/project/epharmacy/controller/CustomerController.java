@@ -1,6 +1,7 @@
 package com.project.epharmacy.controller;
 
 import com.project.epharmacy.dto.request.ReqCustomer;
+import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.entity.Customer;
@@ -18,14 +19,14 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    @GetMapping("/getCustomerList")
-    public Response<List<RespCustomer>> getCustomerList() {
-        return customerService.getCustomerList();
+    @PostMapping("/getCustomerList")
+    public Response<List<RespCustomer>> getCustomerList(@RequestBody ReqToken reqToken) {
+        return customerService.getCustomerList(reqToken);
     }
 
-    @GetMapping("/getCustomerById/{customerId}")
-    public Response<RespCustomer> getCustomerById(@PathVariable Long customerId) {
-        return customerService.getCustomerById(customerId);
+    @PostMapping("/getCustomerById")
+    public Response<RespCustomer> getCustomerById(@RequestBody ReqCustomer reqCustomer) {
+        return customerService.getCustomerById(reqCustomer);
     }
 
     @PostMapping("/addCustomer")
@@ -38,8 +39,8 @@ public class CustomerController {
         return customerService.updateCustomer(reqCustomer);
     }
 
-    @PutMapping("/deleteCustomer/{customerId}")
-    public Response deleteCustomer(@PathVariable Long customerId) {
-        return customerService.deleteCustomer(customerId);
+    @PutMapping("/deleteCustomer")
+    public Response deleteCustomer(ReqCustomer reqCustomer) {
+        return customerService.deleteCustomer(reqCustomer);
     }
 }

@@ -1,15 +1,21 @@
 package com.project.epharmacy.service.impl;
 
 import com.project.epharmacy.dto.request.ReqCustomer;
+import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.RespStatus;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.entity.Customer;
+import com.project.epharmacy.entity.User;
+import com.project.epharmacy.entity.UserToken;
 import com.project.epharmacy.enums.EnumAvavilableStatus;
 import com.project.epharmacy.exception.ExceptionConstants;
 import com.project.epharmacy.exception.MyException;
 import com.project.epharmacy.repository.CustomerRepository;
+import com.project.epharmacy.repository.UserRepository;
+import com.project.epharmacy.repository.UserTokenRepository;
 import com.project.epharmacy.service.CustomerService;
+import com.project.epharmacy.util.Utility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +28,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    private final Utility utility;
+
     @Override
-    public Response<List<RespCustomer>> getCustomerList() {
+    public Response<List<RespCustomer>> getCustomerList(ReqToken reqToken) {
         Response<List<RespCustomer>> response = new Response<>();
         try {
+            utility.checkToken(reqToken);
             List<Customer> customerList = customerRepository.findAllByActive(EnumAvavilableStatus.ACTIVE.value);
             if (customerList.isEmpty()) {
                 throw new MyException(ExceptionConstants.CUSTOMER_NOT_FOUND, "Customer not found");
@@ -44,9 +53,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Response<RespCustomer> getCustomerById(Long customerId) {
+    public Response<RespCustomer> getCustomerById(ReqCustomer reqCustomer) {
         Response response = new Response<>();
         try {
+            utility.checkToken(reqCustomer.getReqToken());
+            Long customerId = reqCustomer.getId();
             if (customerId == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
@@ -71,6 +82,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Response addCustomer(ReqCustomer reqCustomer) {
         Response response = new Response();
         try {
+            utility.checkToken(reqCustomer.getReqToken());
             String name = reqCustomer.getName();
             String surname = reqCustomer.getSurname();
             if (name == null || surname == null) {
@@ -99,6 +111,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Response updateCustomer(ReqCustomer reqCustomer) {
         Response response = new Response<>();
         try {
+            utility.checkToken(reqCustomer.getReqToken());
             String name = reqCustomer.getName();
             String surname = reqCustomer.getSurname();
             Long id = reqCustomer.getId();
@@ -124,14 +137,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Response deleteCustomer(Long customerId) {
+    public Response deleteCustomer(ReqCustomer reqCustomer) {
         Response response = new Response();
         try {
-            Long id = customerId;
-            if (id == null) {
+            utility.checkToken(reqCustomer.getReqToken());
+            Long customerId = reqCustomer.getId();
+            if (customerId == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
-            Customer customer = customerRepository.findCustomerByIdAndActive(id, EnumAvavilableStatus.ACTIVE.value);
+            Customer customer = customerRepository.findCustomerByIdAndActive(customerId, EnumAvavilableStatus.ACTIVE.value);
             if (customer == null) {
                 throw new MyException(ExceptionConstants.CUSTOMER_NOT_FOUND, "Customer not found");
             }

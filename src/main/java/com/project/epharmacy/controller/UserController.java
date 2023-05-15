@@ -23,6 +23,7 @@ public class UserController {
         return userService.login(reqLogin);
     }
 
+    @PostMapping("/logout")
     public Response logout(@RequestBody ReqToken reqToken) {
         return userService.logout(reqToken);
     }

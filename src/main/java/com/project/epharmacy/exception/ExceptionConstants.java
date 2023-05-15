@@ -11,4 +11,5 @@ public final class ExceptionConstants {
     public static final Integer USER_NOT_FOUND = 107;
     public static final Integer DEPARTMENT_NOT_FOUND = 108;
     public static final Integer INVALID_TOKEN = 109;
+    public static final Integer MEDICATION_NOT_FOUND = 110;
 }

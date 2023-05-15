@@ -27,7 +27,7 @@ public class Manufacturer {
     private String address;
     private String email;
     @ManyToOne
-    @JoinColumn(name = "medications_id")
+    @JoinColumn(name = "medication_id")
     private Medication medication;
     @CreationTimestamp
     private Date dataDate;

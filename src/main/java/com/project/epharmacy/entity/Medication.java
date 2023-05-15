@@ -10,7 +10,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "medication")
@@ -28,8 +27,6 @@ public class Medication {
     private Double price;
     private Date productionDate;
     private Date expirationDate;
-    @ManyToMany(mappedBy = "medication")
-    private List<Department> department;
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;

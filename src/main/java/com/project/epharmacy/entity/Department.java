@@ -1,5 +1,6 @@
 package com.project.epharmacy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +27,8 @@ public class Department {
     private String name;
     private String location;
     @ManyToOne
-    @JoinColumn(name = "medications_id")
+    @JsonIgnoreProperties("department")
+    @JoinColumn(name = "medication_id")
     private Medication medication;
     @CreationTimestamp
     private Date dataDate;

@@ -1,5 +1,6 @@
 package com.project.epharmacy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,7 @@ public class Manufacturer {
     private String email;
     @ManyToOne
     @JoinColumn(name = "medication_id")
+    @JsonIgnoreProperties("manufacturer")
     private Medication medication;
     @CreationTimestamp
     private Date dataDate;

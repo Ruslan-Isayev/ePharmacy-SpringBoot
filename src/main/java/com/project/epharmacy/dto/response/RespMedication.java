@@ -14,5 +14,4 @@ public class RespMedication {
     private Double price;
     private Date productionDate;
     private Date expirationDate;
-    private Manufacturer manufacturer;
 }

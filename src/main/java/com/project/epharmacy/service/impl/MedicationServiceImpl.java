@@ -1,6 +1,7 @@
 package com.project.epharmacy.service.impl;
 
 import com.project.epharmacy.dto.request.ReqManufacturer;
+import com.project.epharmacy.dto.request.ReqMedication;
 import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespMedication;
 import com.project.epharmacy.dto.response.RespStatus;
@@ -70,6 +71,32 @@ public class MedicationServiceImpl implements MedicationService {
             }
             List<RespMedication> respMedicationList = medicationList.stream().map(medication -> mapping(medication)).collect(Collectors.toList());
             response.setT(respMedicationList);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response<RespMedication> getMedicationById(ReqMedication reqMedication) {
+        Response<RespMedication> response = new Response<>();
+        try {
+            utility.checkToken(reqMedication.getReqToken());
+            Long medicationId = reqMedication.getId();
+            if (medicationId == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Medication medication = medicationRepository.findByIdAndActive(medicationId, EnumAvavilableStatus.ACTIVE.value);
+            if (medication == null) {
+                throw new MyException(ExceptionConstants.MEDICATION_NOT_FOUND, "Medication not found");
+            }
+            RespMedication respMedication = mapping(medication);
+            response.setT(respMedication);
             response.setStatus(RespStatus.getSuccessMessage());
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));

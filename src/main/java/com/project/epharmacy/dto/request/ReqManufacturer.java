@@ -8,7 +8,7 @@ import lombok.Data;
 @Builder
 public class ReqManufacturer {
 
-    private Long manufacturerId;
+    private Long id;
     private String name;
     private String address;
     private String email;

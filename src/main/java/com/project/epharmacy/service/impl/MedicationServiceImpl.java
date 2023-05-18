@@ -58,10 +58,10 @@ public class MedicationServiceImpl implements MedicationService {
         Response<List<RespMedication>> response = new Response<>();
         try {
             utility.checkToken(reqManufacturer.getReqToken());
-            if (reqManufacturer.getManufacturerId() == null) {
+            if (reqManufacturer.getId() == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
-            Manufacturer manufacturer = manufacturerRepository.findManufacturerByIdAndActive(reqManufacturer.getManufacturerId(), EnumAvavilableStatus.ACTIVE.value);
+            Manufacturer manufacturer = manufacturerRepository.findManufacturerByIdAndActive(reqManufacturer.getId(), EnumAvavilableStatus.ACTIVE.value);
             if (manufacturer == null) {
                 throw new MyException(ExceptionConstants.MANUFACTURER_NOT_FOUND, "Manufacturer not found");
             }

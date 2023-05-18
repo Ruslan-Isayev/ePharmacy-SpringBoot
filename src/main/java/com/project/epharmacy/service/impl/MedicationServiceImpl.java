@@ -87,11 +87,11 @@ public class MedicationServiceImpl implements MedicationService {
         Response<RespMedication> response = new Response<>();
         try {
             utility.checkToken(reqMedication.getReqToken());
-            Long medicationId = reqMedication.getId();
-            if (medicationId == null) {
+            Long id = reqMedication.getId();
+            if (id == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
-            Medication medication = medicationRepository.findByIdAndActive(medicationId, EnumAvavilableStatus.ACTIVE.value);
+            Medication medication = medicationRepository.findMedicationByIdAndActive(id, EnumAvavilableStatus.ACTIVE.value);
             if (medication == null) {
                 throw new MyException(ExceptionConstants.MEDICATION_NOT_FOUND, "Medication not found");
             }

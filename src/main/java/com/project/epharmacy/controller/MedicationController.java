@@ -28,7 +28,7 @@ public class MedicationController {
     }
 
     @PostMapping("getMedicationById")
-    Response<RespMedication> getMedicationById(ReqMedication reqMedication) {
+    Response<RespMedication> getMedicationById(@RequestBody ReqMedication reqMedication) {
         return medicationService.getMedicationById(reqMedication);
     }
 

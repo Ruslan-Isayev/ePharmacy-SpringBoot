@@ -1,6 +1,5 @@
 package com.project.epharmacy.dto.response;
 
-import com.project.epharmacy.entity.Manufacturer;
 import lombok.Builder;
 import lombok.Data;
 

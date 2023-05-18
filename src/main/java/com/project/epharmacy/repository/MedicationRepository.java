@@ -11,7 +11,7 @@ public interface MedicationRepository extends JpaRepository<Medication, Long> {
 
     List<Medication> findAllByActive(Integer active);
 
-    Medication findByIdAndActive(Long id, Integer active);
+    Medication findMedicationByIdAndActive(Long id, Integer active);
 
     List<Medication> findAllByManufacturerAndActive(Manufacturer manufacturer, Integer active);
 }

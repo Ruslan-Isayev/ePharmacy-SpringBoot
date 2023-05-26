@@ -26,10 +26,6 @@ public class Department {
     private Long id;
     private String name;
     private String location;
-    @ManyToOne
-    @JsonIgnoreProperties("department")
-    @JoinColumn(name = "medication_id")
-    private Medication medication;
     @CreationTimestamp
     private Date dataDate;
     @ColumnDefault("1")

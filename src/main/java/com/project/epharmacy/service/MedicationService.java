@@ -1,5 +1,6 @@
 package com.project.epharmacy.service;
 
+import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.request.ReqManufacturer;
 import com.project.epharmacy.dto.request.ReqMedication;
 import com.project.epharmacy.dto.request.ReqToken;
@@ -17,4 +18,6 @@ public interface MedicationService {
     Response<List<RespMedication>> getMedicationListByManufacturerId(ReqManufacturer reqManufacturer);
 
     Response<RespMedication> getMedicationById(ReqMedication reqMedication);
+
+    Response<List<RespMedication>> getMedicationListByDepartmentId(ReqDepartment reqDepartment);
 }

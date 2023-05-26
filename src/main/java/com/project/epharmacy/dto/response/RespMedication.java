@@ -8,9 +8,10 @@ import java.util.Date;
 @Data
 @Builder
 public class RespMedication {
-    private Long id;
-    private String name;
-    private Double price;
+    private Long medicationId;
+    private String medicationName;
+    private Double medicationPrice;
+    private String manufacturerName;
     private Date productionDate;
     private Date expirationDate;
 }

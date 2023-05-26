@@ -30,6 +30,9 @@ public class Medication {
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     private Manufacturer manufacturer;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
     @CreationTimestamp
     private Date dataDate;
     @ColumnDefault("1")

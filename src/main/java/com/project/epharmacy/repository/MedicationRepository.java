@@ -1,5 +1,6 @@
 package com.project.epharmacy.repository;
 
+import com.project.epharmacy.entity.Department;
 import com.project.epharmacy.entity.Manufacturer;
 import com.project.epharmacy.entity.Medication;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,6 @@ public interface MedicationRepository extends JpaRepository<Medication, Long> {
     Medication findMedicationByIdAndActive(Long id, Integer active);
 
     List<Medication> findAllByManufacturerAndActive(Manufacturer manufacturer, Integer active);
+
+    List<Medication> findAllByDepartmentAndActive(Department department, Integer active);
 }

@@ -1,11 +1,13 @@
 package com.project.epharmacy.controller;
 
+import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.request.ReqManufacturer;
 import com.project.epharmacy.dto.request.ReqMedication;
 import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespMedication;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.entity.Medication;
+import com.project.epharmacy.service.DepartmentService;
 import com.project.epharmacy.service.MedicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,8 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
+    private final DepartmentService departmentService;
+
     @PostMapping("/getMedicationList")
     public Response<List<RespMedication>> getMedicationList(@RequestBody ReqToken reqToken) {
         return medicationService.getMedicationList(reqToken);
@@ -36,4 +40,10 @@ public class MedicationController {
     public Response<List<RespMedication>> getMedicationListByManufacturerId(@RequestBody ReqManufacturer reqManufacturer) {
         return medicationService.getMedicationListByManufacturerId(reqManufacturer);
     }
+
+    @PostMapping("getMedicationListByDepartmentId")
+    public Response<List<RespMedication>> getMedicationListByDepartmentId(@RequestBody ReqDepartment reqDepartment) {
+        return medicationService.getMedicationListByDepartmentId(reqDepartment);
+    }
+
 }

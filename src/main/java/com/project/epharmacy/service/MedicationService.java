@@ -20,4 +20,6 @@ public interface MedicationService {
     Response<RespMedication> getMedicationById(ReqMedication reqMedication);
 
     Response<List<RespMedication>> getMedicationListByDepartmentId(ReqDepartment reqDepartment);
+
+    Response addMedication(ReqMedication reqMedication);
 }

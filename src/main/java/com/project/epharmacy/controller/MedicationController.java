@@ -44,4 +44,9 @@ public class MedicationController {
         return medicationService.getMedicationListByDepartmentId(reqDepartment);
     }
 
+    @PostMapping
+    public Response addMedication(@RequestBody ReqMedication reqMedication) {
+        return medicationService.addMedication(reqMedication);
+    }
+
 }

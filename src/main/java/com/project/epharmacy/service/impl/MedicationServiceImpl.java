@@ -1,5 +1,6 @@
 package com.project.epharmacy.service.impl;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.epharmacy.dto.request.ReqDepartment;
 import com.project.epharmacy.dto.request.ReqManufacturer;
 import com.project.epharmacy.dto.request.ReqMedication;
@@ -21,6 +22,7 @@ import com.project.epharmacy.util.Utility;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -134,6 +136,24 @@ public class MedicationServiceImpl implements MedicationService {
             List<RespMedication> respMedicationList = medicationList.stream().map(medication -> mapping(medication)).collect(Collectors.toList());
             response.setT(respMedicationList);
             response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response addMedication(ReqMedication reqMedication) {
+        Response response = new Response<>();
+        try {
+            Long id;
+            String name;
+            Manufacturer manufacturer;
+            ReqToken reqToken;
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
             ex.printStackTrace();

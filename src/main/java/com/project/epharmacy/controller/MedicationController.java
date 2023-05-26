@@ -24,8 +24,6 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
-    private final DepartmentService departmentService;
-
     @PostMapping("/getMedicationList")
     public Response<List<RespMedication>> getMedicationList(@RequestBody ReqToken reqToken) {
         return medicationService.getMedicationList(reqToken);

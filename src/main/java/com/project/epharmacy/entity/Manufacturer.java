@@ -28,7 +28,6 @@ public class Manufacturer {
     private String address;
     private String email;
     @ManyToOne
-    @JoinColumn(name = "medication_id")
     @JsonIgnoreProperties("manufacturer")
     private Medication medication;
     @CreationTimestamp

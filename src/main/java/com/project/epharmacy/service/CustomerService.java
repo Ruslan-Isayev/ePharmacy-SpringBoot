@@ -20,4 +20,6 @@ public interface CustomerService {
     Response updateCustomer(ReqCustomer reqCustomer);
 
     Response deleteCustomer(ReqCustomer reqCustomer);
+
+    Response confirmCustomer(String confirmationToken);
 }

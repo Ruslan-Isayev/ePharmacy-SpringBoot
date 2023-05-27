@@ -3,14 +3,12 @@ package com.project.epharmacy.enums;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
-public enum EnumAvavilableStatus {
+public enum ConfirmationStatus {
+    PENDING("Pending"),
+    CONFIRMED("Confirmed"),
+    EXPIRED("Expired");
 
-    ACTIVE(1),
-    DEACTIVE(0);
-
-    public int value;
+    public String status;
 }
-

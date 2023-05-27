@@ -6,20 +6,20 @@ import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.RespStatus;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.entity.Customer;
-import com.project.epharmacy.entity.User;
-import com.project.epharmacy.entity.UserToken;
+import com.project.epharmacy.enums.ConfirmationStatus;
 import com.project.epharmacy.enums.EnumAvavilableStatus;
 import com.project.epharmacy.exception.ExceptionConstants;
 import com.project.epharmacy.exception.MyException;
 import com.project.epharmacy.repository.CustomerRepository;
-import com.project.epharmacy.repository.UserRepository;
-import com.project.epharmacy.repository.UserTokenRepository;
 import com.project.epharmacy.service.CustomerService;
 import com.project.epharmacy.util.Utility;
 import lombok.RequiredArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     private final Utility utility;
+
+    private final JavaMailSender mailSender;
 
     @Override
     public Response<List<RespCustomer>> getCustomerList(ReqToken reqToken) {
@@ -88,14 +90,20 @@ public class CustomerServiceImpl implements CustomerService {
             if (name == null || surname == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
+            if (reqCustomer.getEmail() == null) {
+                throw new IllegalArgumentException("Recipient email address is null");
+            }
             Customer customer = Customer.builder()
                     .name(name)
                     .surname(surname)
+                    .email(reqCustomer.getEmail())
                     .phone(reqCustomer.getPhone())
                     .dob(reqCustomer.getDob())
                     .cif(reqCustomer.getCif())
+                    .confirmationToken(UUID.randomUUID().toString())
                     .build();
             customerRepository.save(customer);
+            sendConfirmationEmail(customer.getEmail(), customer.getConfirmationToken());
             response.setStatus(RespStatus.getSuccessMessage());
         } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
@@ -162,15 +170,47 @@ public class CustomerServiceImpl implements CustomerService {
         return response;
     }
 
+    @Override
+    public Response confirmCustomer(String confirmationToken) {
+        Response response = new Response();
+        try {
+            Customer customer = customerRepository.findByConfirmationToken(confirmationToken);
+            if (customer == null) {
+                throw new MyException(ExceptionConstants.INVALID_CONFIRMATION_TOKEN, "Invalid confirmation token");
+            }
+            customer.setConfirmationStatus(ConfirmationStatus.CONFIRMED.status);
+            customerRepository.save(customer);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
     private RespCustomer mapping(Customer customer) {
         RespCustomer respCustomer = RespCustomer.builder()
                 .id(customer.getId())
                 .name(customer.getName())
                 .surname(customer.getSurname())
+                .email(customer.getEmail())
                 .cif(customer.getCif())
                 .phone(customer.getPhone())
                 .dob(customer.getDob())
+                .confirmationToken(customer.getConfirmationToken())
                 .build();
         return respCustomer;
+    }
+
+    private void sendConfirmationEmail(String recipientEmail, String confirmationToken) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Email Confirmation");
+        message.setText("Please confirm your email address by clicking the link below:\n\n"
+                + "http://localhost:8091/customer/confirmCustomer/" + confirmationToken);
+        mailSender.send(message);
     }
 }

@@ -25,11 +25,15 @@ public class Customer {
     private Long id;
     private String name;
     private String surname;
+    private String email;
     private String cif;
     private Long phone;
     private Date dob;
+    @Column(unique = true)
+    private String confirmationToken;
     @CreationTimestamp
     private Date dataDate;
     @ColumnDefault("1")
     private Integer active;
+    private String confirmationStatus;
 }

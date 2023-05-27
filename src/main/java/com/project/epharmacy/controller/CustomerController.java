@@ -4,8 +4,8 @@ import com.project.epharmacy.dto.request.ReqCustomer;
 import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.Response;
-import com.project.epharmacy.entity.Customer;
 import com.project.epharmacy.service.CustomerService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +42,10 @@ public class CustomerController {
     @PutMapping("/deleteCustomer")
     public Response deleteCustomer(ReqCustomer reqCustomer) {
         return customerService.deleteCustomer(reqCustomer);
+    }
+
+    @GetMapping("/confirmCustomer/{confirmationToken}")
+    public Response confirmCustomer(@PathVariable String confirmationToken) {
+        return customerService.confirmCustomer(confirmationToken);
     }
 }

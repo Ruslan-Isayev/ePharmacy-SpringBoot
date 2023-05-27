@@ -13,4 +13,5 @@ public final class ExceptionConstants {
     public static final Integer INVALID_TOKEN = 109;
     public static final Integer MEDICATION_NOT_FOUND = 110;
     public static final Integer MANUFACTURER_NOT_FOUND = 111;
+    public static final Integer INVALID_CONFIRMATION_TOKEN = 112;
 }

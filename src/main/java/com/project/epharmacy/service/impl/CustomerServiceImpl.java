@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
 
-
     private final CustomerRepository customerRepository;
 
     private final Utility utility;

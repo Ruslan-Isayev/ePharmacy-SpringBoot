@@ -93,10 +93,10 @@ public class CustomerServiceImpl implements CustomerService {
             if (reqCustomer.getEmail() == null) {
                 throw new IllegalArgumentException("Recipient email address is null");
             }
-//            Customer existingCustomer = customerRepository.findByEmail(reqCustomer.getEmail());
-//            if (existingCustomer != null) {
-//                throw new MyException(ExceptionConstants.CUSTOMER_ALREADY_EXISTS, "Customer with the same email already exists");
-//            }
+            Customer existingCustomer = customerRepository.findByEmail(reqCustomer.getEmail());
+            if (existingCustomer != null) {
+                throw new MyException(ExceptionConstants.CUSTOMER_ALREADY_EXISTS, "Customer with the same email already exists");
+            }
             Customer customer = Customer.builder()
                     .name(name)
                     .surname(surname)

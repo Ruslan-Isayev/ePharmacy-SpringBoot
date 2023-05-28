@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf7e051e-8768-4831-af91-dee0e788285f" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/exception/ExceptionConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/exception/ExceptionConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/repository/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/exception/ExceptionConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/exception/ExceptionConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/CustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/CustomerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +58,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.38965517",
+    "settings.editor.selected.configurable": "terminal",
     "spring.configuration.checksum": "9f3c6c595d978bb34aab70f123e4235d",
     "vue.rearranger.settings.migration": "true"
   },
@@ -131,7 +128,7 @@
       <workItem from="1685260082449" duration="6269000" />
       <workItem from="1685269784860" duration="40000" />
       <workItem from="1685283089295" duration="4875000" />
-      <workItem from="1685288447525" duration="3904000" />
+      <workItem from="1685288447525" duration="5666000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1683558170622</created>
@@ -336,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685288668542</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="commit">
+      <created>1685295033364</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1685295033364</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,5 +380,9 @@
         <watch expression="reqMedication.price" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

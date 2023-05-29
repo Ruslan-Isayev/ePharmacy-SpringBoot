@@ -196,6 +196,15 @@ public class CustomerServiceImpl implements CustomerService {
         return response;
     }
 
+    private void sendConfirmationEmail(String recipientEmail, String confirmationToken) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(recipientEmail);
+        message.setSubject("Email Confirmation");
+        message.setText("Please confirm your email address by clicking the link:\n\n"
+                + "http://127.0.0.1:8091/customer/confirmCustomer/" + confirmationToken);
+        mailSender.send(message);
+    }
+
     private RespCustomer mapping(Customer customer) {
         RespCustomer respCustomer = RespCustomer.builder()
                 .id(customer.getId())
@@ -210,12 +219,4 @@ public class CustomerServiceImpl implements CustomerService {
         return respCustomer;
     }
 
-    private void sendConfirmationEmail(String recipientEmail, String confirmationToken) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(recipientEmail);
-        message.setSubject("Email Confirmation");
-        message.setText("Please confirm your email address by clicking the link below:\n\n"
-                + "http://localhost:8091/customer/confirmCustomer/" + confirmationToken);
-        mailSender.send(message);
-    }
 }

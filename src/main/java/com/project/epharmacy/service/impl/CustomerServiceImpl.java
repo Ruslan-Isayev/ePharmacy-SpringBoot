@@ -93,7 +93,7 @@ public class CustomerServiceImpl implements CustomerService {
             if (reqCustomer.getEmail() == null) {
                 throw new IllegalArgumentException("Recipient email address is null");
             }
-            Customer existingCustomer = customerRepository.findByEmail(reqCustomer.getEmail());
+            Customer existingCustomer = customerRepository.findByEmailAndActive(reqCustomer.getEmail(), EnumAvavilableStatus.ACTIVE.value);
             if (existingCustomer != null) {
                 throw new MyException(ExceptionConstants.CUSTOMER_ALREADY_EXISTS, "Customer with the same email already exists");
             }
@@ -179,7 +179,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Response confirmCustomer(String confirmationToken) {
         Response response = new Response();
         try {
-            Customer customer = customerRepository.findByConfirmationToken(confirmationToken);
+            Customer customer = customerRepository.findByConfirmationTokenAndActive(confirmationToken, EnumAvavilableStatus.ACTIVE.value);
             if (customer == null) {
                 throw new MyException(ExceptionConstants.INVALID_CONFIRMATION_TOKEN, "Invalid confirmation token");
             }
@@ -200,8 +200,8 @@ public class CustomerServiceImpl implements CustomerService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
         message.setSubject("Email Confirmation");
-        message.setText("Please confirm your email address by clicking the link:\n\n"
-                + "http://127.0.0.1:8091/customer/confirmCustomer/" + confirmationToken);
+        message.setText("Please confirm your email address by clicking the link:\n\n" +
+                "http://127.0.0.1:8091/customer/confirmCustomer/" + confirmationToken);
         mailSender.send(message);
     }
 

@@ -8,6 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/5be9d99c-d296-4a65-808b-0d65efa3184f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5be9d99c-d296-4a65-808b-0d65efa3184f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/entity/ConfirmationToken$ConfirmationTokenBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/entity/ConfirmationToken.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/ConfirmationTokenRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/ConfirmationTokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,17 +87,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EPharmacyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ePharmacy" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.epharmacy.EPharmacyApplication" />
@@ -132,7 +126,10 @@
       <workItem from="1685269784860" duration="40000" />
       <workItem from="1685283089295" duration="4875000" />
       <workItem from="1685288447525" duration="5666000" />
-      <workItem from="1685389689262" duration="402000" />
+      <workItem from="1685389689262" duration="1099000" />
+      <workItem from="1685426748674" duration="270000" />
+      <workItem from="1685427025536" duration="3707000" />
+      <workItem from="1685436186092" duration="4467000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1683558170622</created>
@@ -344,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685295033364</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="commit">
+      <created>1685391174586</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1685391174586</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

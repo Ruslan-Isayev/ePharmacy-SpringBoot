@@ -22,4 +22,6 @@ public interface CustomerService {
     Response deleteCustomer(ReqCustomer reqCustomer);
 
     Response confirmCustomer(String confirmationToken);
+
+    void sendConfirmationEmail(String recipientEmail, String confirmationToken);
 }

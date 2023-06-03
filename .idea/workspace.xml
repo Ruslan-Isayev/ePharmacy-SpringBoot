@@ -5,14 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf7e051e-8768-4831-af91-dee0e788285f" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/demo/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/demo/StudentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/demo/StudentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/demo/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/demo/StudentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/util/MyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/create_student.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/edit_student.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/students.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/customer.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/department.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/5be9d99c-d296-4a65-808b-0d65efa3184f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/5be9d99c-d296-4a65-808b-0d65efa3184f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ePharmacy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ePharmacy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/EPharmacyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/EPharmacyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/CustomerService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/service/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/entity/ConfirmationToken$ConfirmationTokenBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/entity/ConfirmationToken.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/ConfirmationTokenRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/ConfirmationTokenService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/util/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/epharmacy/util/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/EPharmacyApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/EPharmacyApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/CustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/repository/CustomerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/CustomerService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/service/impl/CustomerServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/epharmacy/util/Utility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/epharmacy/util/Utility.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +45,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Jsp File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -56,10 +80,11 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;features/branch3&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/blvck/IdeaProjects/ePharmacy-SpringBoot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/blvck/IdeaProjects/ePharmacy-SpringBoot/src/main/resources/templates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -84,6 +109,16 @@
       <recent name="com.project.epharmacy.repository" />
       <recent name="com.project.epharmacy.service" />
       <recent name="com.project.epharmacy.dto.response" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main\resources\templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main\java\com\project\epharmacy\demo" />
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main\java\webapp\pages" />
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main\webapp\WEB-INF\pages" />
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main\webapp" />
+      <recent name="C:\Users\blvck\IdeaProjects\ePharmacy-SpringBoot\src\main" />
     </key>
   </component>
   <component name="RunManager">
@@ -129,7 +164,13 @@
       <workItem from="1685389689262" duration="1099000" />
       <workItem from="1685426748674" duration="270000" />
       <workItem from="1685427025536" duration="3707000" />
-      <workItem from="1685436186092" duration="4467000" />
+      <workItem from="1685436186092" duration="8683000" />
+      <workItem from="1685515085488" duration="29000" />
+      <workItem from="1685515125695" duration="12058000" />
+      <workItem from="1685602680447" duration="8502000" />
+      <workItem from="1685632466436" duration="1855000" />
+      <workItem from="1685722451123" duration="114000" />
+      <workItem from="1685722576355" duration="946000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1683558170622</created>
@@ -348,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685391174586</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="commit">
+      <created>1685461796191</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1685461796191</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

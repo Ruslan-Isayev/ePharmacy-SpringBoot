@@ -5,7 +5,6 @@ import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespCustomer;
 import com.project.epharmacy.dto.response.Response;
 import com.project.epharmacy.service.CustomerService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +39,7 @@ public class CustomerController {
     }
 
     @PutMapping("/deleteCustomer")
-    public Response deleteCustomer(ReqCustomer reqCustomer) {
+    public Response deleteCustomer(@RequestBody ReqCustomer reqCustomer) {
         return customerService.deleteCustomer(reqCustomer);
     }
 

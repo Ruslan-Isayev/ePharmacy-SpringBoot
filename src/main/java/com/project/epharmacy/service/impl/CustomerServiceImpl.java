@@ -196,7 +196,8 @@ public class CustomerServiceImpl implements CustomerService {
         return response;
     }
 
-    private void sendConfirmationEmail(String recipientEmail, String confirmationToken) {
+    @Override
+    public void sendConfirmationEmail(String recipientEmail, String confirmationToken) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recipientEmail);
         message.setSubject("Email Confirmation");

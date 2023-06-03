@@ -9,7 +9,11 @@ import com.project.epharmacy.exception.MyException;
 import com.project.epharmacy.repository.UserRepository;
 import com.project.epharmacy.repository.UserTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 @Component
 @RequiredArgsConstructor
@@ -35,4 +39,7 @@ public class Utility {
         }
         return userToken;
     }
+
+
+
 }

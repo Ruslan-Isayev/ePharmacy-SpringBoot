@@ -82,6 +82,32 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         return response;
     }
 
+    @Override
+    public Response addManufacturer(ReqManufacturer reqManufacturer) {
+        Response response = new Response<>();
+        try {
+            String name = reqManufacturer.getName();
+            String address = reqManufacturer.getAddress();
+            if (name == null || address == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Manufacturer manufacturer = Manufacturer.builder()
+                    .name(name)
+                    .address(address)
+                    .email(reqManufacturer.getEmail())
+                    .build();
+            manufacturerRepository.save(manufacturer);
+            response.setStatus(RespStatus.getSuccessMessage());
+        }  catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
     private RespManufacturer mapping(Manufacturer manufacturer) {
         RespManufacturer respManufacturer = RespManufacturer.builder()
                 .id(manufacturer.getId())

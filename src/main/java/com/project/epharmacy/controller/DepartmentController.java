@@ -21,9 +21,9 @@ public class DepartmentController {
         return departmentService.getDepartmentList();
     }
 
-    @GetMapping("/getDepartmentById/{departmentId}")
-    public Response<RespDepartment> getDepartmentById(@PathVariable Long departmentId) {
-        return departmentService.getDepartmentById(departmentId);
+    @PostMapping("/getDepartmentById")
+    public Response<RespDepartment> getDepartmentById(@RequestBody ReqDepartment reqDepartment) {
+        return departmentService.getDepartmentById(reqDepartment);
     }
 
     @PostMapping("/addDepartment")
@@ -34,5 +34,10 @@ public class DepartmentController {
     @PutMapping("/updateDepartment")
     public Response updateDepartment(@RequestBody ReqDepartment reqDepartment) {
         return departmentService.updateDepartment(reqDepartment);
+    }
+
+    @PutMapping("/deleteDepartment")
+    public Response deleteDepartment(@RequestBody ReqDepartment reqDepartment) {
+        return departmentService.deleteDepartment(reqDepartment);
     }
 }

@@ -12,10 +12,11 @@ public interface DepartmentService {
 
     Response<List<RespDepartment>> getDepartmentList();
 
-    Response<RespDepartment> getDepartmentById(Long departmentId);
+    Response<RespDepartment> getDepartmentById(ReqDepartment reqDepartment);
 
     Response addDepartment(ReqDepartment reqDepartment);
 
     Response updateDepartment(ReqDepartment reqDepartment);
 
+    Response deleteDepartment(ReqDepartment reqDepartment);
 }

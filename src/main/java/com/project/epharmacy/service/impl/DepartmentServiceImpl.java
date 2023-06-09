@@ -44,13 +44,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Response<RespDepartment> getDepartmentById(Long departmentId) {
+    public Response<RespDepartment> getDepartmentById(ReqDepartment reqDepartment) {
         Response<RespDepartment> response = new Response<>();
         try {
-            if (departmentId == null) {
+            if (reqDepartment.getId() == null) {
                 throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
             }
-            Department department = departmentRepository.getDepartmentByIdAndActive(departmentId, EnumAvavilableStatus.ACTIVE.value);
+            Department department = departmentRepository.getDepartmentByIdAndActive(reqDepartment.getId(), EnumAvavilableStatus.ACTIVE.value);
             RespDepartment respDepartment = mapping(department);
             response.setT(respDepartment);
             response.setStatus(RespStatus.getSuccessMessage());
@@ -104,6 +104,31 @@ public class DepartmentServiceImpl implements DepartmentService {
             departmentRepository.save(department);
             response.setStatus(RespStatus.getSuccessMessage());
         }catch (MyException ex) {
+            response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
+            ex.printStackTrace();
+        } catch (Exception ex) {
+            response.setStatus(new RespStatus(ExceptionConstants.INTERNAL_EXCEPTION, "Internal exception"));
+            ex.printStackTrace();
+        }
+        return response;
+    }
+
+    @Override
+    public Response deleteDepartment(ReqDepartment reqDepartment) {
+        Response response = new Response<>();
+        try {
+            Long departmentId = reqDepartment.getId();
+            if (departmentId == null) {
+                throw new MyException(ExceptionConstants.INVALID_REQUEST_DATA, "Invalid request data");
+            }
+            Department department = departmentRepository.getDepartmentByIdAndActive(departmentId, EnumAvavilableStatus.ACTIVE.value);
+            if (department == null) {
+                throw new MyException(ExceptionConstants.DEPARTMENT_NOT_FOUND, "Department not found");
+            }
+            department.setActive(EnumAvavilableStatus.DEACTIVE.value);
+            departmentRepository.save(department);
+            response.setStatus(RespStatus.getSuccessMessage());
+        } catch (MyException ex) {
             response.setStatus(new RespStatus(ex.getCode(), ex.getMessage()));
             ex.printStackTrace();
         } catch (Exception ex) {

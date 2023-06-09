@@ -1,5 +1,6 @@
 package com.project.epharmacy.controller;
 
+import com.project.epharmacy.dto.request.ReqManufacturer;
 import com.project.epharmacy.dto.request.ReqMedication;
 import com.project.epharmacy.dto.request.ReqToken;
 import com.project.epharmacy.dto.response.RespManufacturer;
@@ -19,6 +20,11 @@ import java.util.List;
 public class ManufacturerController {
 
     private final ManufacturerService manufacturerService;
+
+    @PostMapping("/addManufacturer")
+    public Response addManufacturer(@RequestBody ReqManufacturer reqManufacturer) {
+        return manufacturerService.addManufacturer(reqManufacturer);
+    }
 
     @PostMapping("/getManufacturerList")
     public Response<List<RespManufacturer>> getManufacturerList(@RequestBody ReqToken reqToken) {
